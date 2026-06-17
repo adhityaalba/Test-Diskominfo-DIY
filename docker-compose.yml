@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: diskominfo_db
+    restart: always
+    environment:
+      POSTGRES_DB: project_diskominfo_diy
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./BE
+    container_name: diskominfo_backend
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_KEY: base64:b2R4ZWJhdDMyY2hhcmFjdGVyc3N0cmluZ2ZvcmtleQ==
+      DB_CONNECTION: pgsql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: project_diskominfo_diy
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+    command: >
+      sh -c "
+        sleep 5 &&
+        php artisan migrate:fresh --seed &&
+        php artisan serve --host=0.0.0.0 --port=8000
+      "
+
+  frontend:
+    build:
+      context: ./FE
+      args:
+        - VITE_API_BASE_URL=http://localhost:8000/api
+    container_name: diskominfo_frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+
+volumes:
+  pgdata:

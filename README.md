@@ -81,3 +81,22 @@ Setelah menjalankan seeder di backend, Anda dapat login menggunakan akun berikut
 **User (Pegawai):**
 - Email: `budi@majujaya.com`
 - Password: `password`
+
+---
+
+## 🐳 Menjalankan dengan Docker Compose
+
+Untuk kemudahan review, aplikasi ini sudah dilengkapi dengan konfigurasi **Docker Compose** yang akan menjalankan Backend, Frontend, dan Database PostgreSQL secara otomatis.
+
+### Cara Menjalankan:
+1. Pastikan **Docker** dan **Docker Compose** sudah terinstal di komputer Anda.
+2. Jalankan perintah berikut di direktori root project:
+   ```bash
+   docker compose up --build
+   ```
+3. Docker Compose akan mengunduh image, melakukan build container untuk Backend (`BE`) & Frontend (`FE`), dan secara otomatis menjalankan migrasi & seeder database.
+4. Setelah proses selesai:
+   - **Frontend (Vite + React)** dapat diakses di: `http://localhost`
+   - **Backend (Laravel API)** dapat diakses di: `http://localhost:8000`
+   - **Database (PostgreSQL)** berjalan di port `5432` secara internal.
+

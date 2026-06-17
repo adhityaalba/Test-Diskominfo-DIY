@@ -6,7 +6,7 @@ export default function AdminPegawai() {
   const [jabatans, setJabatans] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [form, setForm] = useState({ id: null, nama: '', gelar: 'S1', jabatan_id: '' });
+  const [form, setForm] = useState({ id: null, nama: '', gelar: 'S1', jabatan_id: '', email: '', password: '' });
 
   useEffect(() => {
     fetchData();
@@ -35,9 +35,9 @@ export default function AdminPegawai() {
 
   const handleOpenModal = (item = null) => {
     if (item) {
-      setForm({ id: item.id, nama: item.nama, gelar: item.gelar, jabatan_id: item.jabatan_id });
+      setForm({ id: item.id, nama: item.nama, gelar: item.gelar, jabatan_id: item.jabatan_id, email: item.user?.email || '', password: '' });
     } else {
-      setForm({ id: null, nama: '', gelar: 'S1', jabatan_id: jabatans[0]?.id || '' });
+      setForm({ id: null, nama: '', gelar: 'S1', jabatan_id: jabatans[0]?.id || '', email: '', password: '' });
     }
     setIsModalOpen(true);
   };
@@ -139,6 +139,14 @@ export default function AdminPegawai() {
                     <option key={j.id} value={j.id}>{j.nama_jabatan}</option>
                   ))}
                 </select>
+              </div>
+              <div className="form-group">
+                <label className="form-label">Email</label>
+                <input required type="email" className="form-control" value={form.email} onChange={e => setForm({...form, email: e.target.value})} />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Password {form.id && <span style={{ fontSize: '0.8rem', color: '#666' }}>(Kosongkan jika tidak ingin mengubah)</span>}</label>
+                <input required={!form.id} type="password" placeholder={form.id ? "••••••••" : ""} className="form-control" value={form.password} onChange={e => setForm({...form, password: e.target.value})} />
               </div>
               <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem', marginTop: '1.5rem' }}>
                 <button type="button" className="btn btn-secondary" onClick={() => setIsModalOpen(false)}>Batal</button>

@@ -39,7 +39,7 @@ export default function AdminRekapGaji() {
             ))}
           </select>
           <input type="number" className="form-control" value={tahun} onChange={(e) => setTahun(e.target.value)} style={{ width: '100px' }} />
-          <button className="btn btn-primary" onClick={handlePrint}>Cetak / PDF</button>
+          <button className="btn btn-primary" onClick={handlePrint}>Cetak / Ekspor PDF</button>
         </div>
       </div>
 
@@ -48,7 +48,10 @@ export default function AdminRekapGaji() {
           <div className="empty-state">Memuat data...</div>
         ) : (
           <div className="table-wrapper" id="printable-area">
-            <h2 style={{ display: 'none' }} className="print-only">Laporan Penggajian - {bulan}/{tahun}</h2>
+            <div className="print-only" style={{ display: 'none', borderBottom: '2px solid var(--color-border)', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
+              <h2 style={{ margin: 0, fontSize: '1.5rem', color: 'var(--color-primary)' }}>PT MAJU JAYA TEKNOLOGI</h2>
+              <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.875rem', color: 'var(--color-text-muted)' }}>Laporan Rekapitulasi Gaji Bulanan - Periode Bulan {bulan}/{tahun}</p>
+            </div>
             <table>
               <thead>
                 <tr>

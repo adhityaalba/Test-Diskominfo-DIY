@@ -48,7 +48,10 @@ export default function UserGaji() {
         <div className="card"><div className="empty-state">Belum ada rekap gaji untuk periode ini.</div></div>
       ) : (
         <div className="card" id="printable-slip">
-          <h2 style={{ display: 'none' }} className="print-only">Slip Gaji - {bulan}/{tahun}</h2>
+          <div className="print-only" style={{ display: 'none', borderBottom: '2px solid var(--color-border)', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', color: 'var(--color-primary)' }}>PT MAJU JAYA TEKNOLOGI</h2>
+            <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.875rem', color: 'var(--color-text-muted)' }}>Slip Gaji Pegawai - Periode Bulan {bulan}/{tahun}</p>
+          </div>
           
           <div style={{ marginBottom: '2rem' }}>
             <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>{data[0].pegawai}</h3>
@@ -91,7 +94,7 @@ export default function UserGaji() {
           </table>
 
           <button className="btn btn-primary" onClick={handlePrint} style={{ width: '100%' }}>
-            Cetak Slip Gaji
+            Ekspor PDF / Cetak Slip Gaji
           </button>
         </div>
       )}

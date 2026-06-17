@@ -2,6 +2,11 @@
 
 Aplikasi berbasis web sederhana untuk mengelola data pegawai, presensi harian, dan perhitungan gaji bulanan di **PT Maju Jaya Teknologi**.
 
+## 📝 Jawaban Soal Ujian (Teori)
+Jawaban untuk soal nomor 1 sampai 4 dalam ujian tertulis / teori dapat diakses pada file berikut:
+- [**Jawaban-Soal-1-sampai-4.md**](file:///Users/aap/Documents/Test-Diskominfo-DIY/Jawaban-Soal-1-sampai-4.md) atau [Jawaban-Soal-1-sampai-4.md](./Jawaban-Soal-1-sampai-4.md) di root direktori ini.
+
+
 ## Tech Stack
 - **Backend:** Laravel 11, PHP 8.2+
 - **Frontend:** React JS (Vite), Node v24.14.0
